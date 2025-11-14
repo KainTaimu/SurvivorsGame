@@ -1,0 +1,7 @@
+*.uid
+*.tscn
+*.import
+*.png
+*.tres
+assets/
+addons/
