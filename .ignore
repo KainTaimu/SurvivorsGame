@@ -18,3 +18,7 @@ LICENSE
 assets/
 addons/
 project_time_traker.json
+CREDITS.md
+NOTES.md
+dotnet-tools.json
+run_release.sh
