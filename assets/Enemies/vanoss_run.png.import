@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgdqk0el08bhx"
-path="res://.godot/imported/duck_idle_debug.png-21ec1d2897401b14a23325752c5cb6ff.ctex"
+uid="uid://xp5sa420xcnt"
+path="res://.godot/imported/vanoss_run.png-a245a3521470b58c762a4c7648ae5f1f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Enemies/duck_idle_debug.png"
-dest_files=["res://.godot/imported/duck_idle_debug.png-21ec1d2897401b14a23325752c5cb6ff.ctex"]
+source_file="res://assets/Enemies/vanoss_run.png"
+dest_files=["res://.godot/imported/vanoss_run.png-a245a3521470b58c762a4c7648ae5f1f.ctex"]
 
 [params]
 
