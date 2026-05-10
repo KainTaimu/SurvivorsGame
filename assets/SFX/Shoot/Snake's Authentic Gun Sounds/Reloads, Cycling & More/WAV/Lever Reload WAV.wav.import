@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bjfu8c83e4a31"
+path="res://.godot/imported/Lever Reload WAV.wav-b1cb325f3bda6c0b6a99f5406fbaa6cf.sample"
+
+[deps]
+
+source_file="res://assets/SFX/Shoot/Snake's Authentic Gun Sounds/Reloads, Cycling & More/WAV/Lever Reload WAV.wav"
+dest_files=["res://.godot/imported/Lever Reload WAV.wav-b1cb325f3bda6c0b6a99f5406fbaa6cf.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

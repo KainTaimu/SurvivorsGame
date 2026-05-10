@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cj8qc1d4knm80"
+path="res://.godot/imported/32 SW Close Cylinder.mp3-056f5c970083a9ed0d81ed851b114e66.mp3str"
+
+[deps]
+
+source_file="res://assets/SFX/Shoot/Snake's SECOND Authentic Gun Sounds/& More/Revolver/32 SW Long/MP3/32 SW Close Cylinder.mp3"
+dest_files=["res://.godot/imported/32 SW Close Cylinder.mp3-056f5c970083a9ed0d81ed851b114e66.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

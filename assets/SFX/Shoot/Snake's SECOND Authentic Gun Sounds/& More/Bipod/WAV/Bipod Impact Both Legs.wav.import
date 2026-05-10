@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b83wwkpllxm5i"
+path="res://.godot/imported/Bipod Impact Both Legs.wav-733c6ada25c18f1d64027b1a8e177007.sample"
+
+[deps]
+
+source_file="res://assets/SFX/Shoot/Snake's SECOND Authentic Gun Sounds/& More/Bipod/WAV/Bipod Impact Both Legs.wav"
+dest_files=["res://.godot/imported/Bipod Impact Both Legs.wav-733c6ada25c18f1d64027b1a8e177007.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

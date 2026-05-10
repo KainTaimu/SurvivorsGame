@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cfw13cbl5st0u"
+path="res://.godot/imported/32 SW Hammer Decock.wav-1b30de7b699d3288adde774a28f2b4f6.sample"
+
+[deps]
+
+source_file="res://assets/SFX/Shoot/Snake's SECOND Authentic Gun Sounds/& More/Revolver/32 SW Long/WAV/32 SW Hammer Decock.wav"
+dest_files=["res://.godot/imported/32 SW Hammer Decock.wav-1b30de7b699d3288adde774a28f2b4f6.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
