@@ -6,3 +6,6 @@ shotgun_cocking.mp3
     https://pixabay.com/sound-effects/film-special-effects-realistic-shotgun-cocking-sound-38640/
 shotgun_reload.mp3
     https://pixabay.com/sound-effects/film-special-effects-rifle-or-shotgun-reload-6787/
+Snakes gun sounds 
+    https://f8studios.itch.io/snakes-authentic-gun-sounds
+    https://f8studios.itch.io/snakes-second-authentic-gun-sounds-pack
