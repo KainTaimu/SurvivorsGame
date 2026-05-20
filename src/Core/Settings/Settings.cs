@@ -5,6 +5,9 @@ namespace Game.UI;
 public partial class Settings : Control
 {
 	[Export]
+	public OptionButton InputMode = null!;
+
+	[Export]
 	public Slider MasterVolume = null!;
 
 	[Export]
@@ -41,6 +44,12 @@ public partial class Settings : Control
 
 	private void UpdateOptions()
 	{
+		InputMode.Selected = GameSettings.Instance.InputMode switch
+		{
+			Core.Settings.InputMode.MouseAndKeyboard => 0,
+			Core.Settings.InputMode.Controller => 1,
+			_ => throw new ArgumentOutOfRangeException(),
+		};
 		MasterVolume.Value = GameSettings.Instance.MasterVolume;
 		MasterVolumeSideLabel.Text = $"{GameSettings.Instance.MasterVolume}dB";
 		GoreSelection.Selected = GameSettings.Instance.GoreEffects switch
@@ -61,6 +70,15 @@ public partial class Settings : Control
 
 	private void SubscribeOptions()
 	{
+		InputMode.ItemSelected += idx =>
+		{
+			GameSettings.Instance.InputMode = idx switch
+			{
+				0 => Core.Settings.InputMode.MouseAndKeyboard,
+				1 => Core.Settings.InputMode.Controller,
+				_ => throw new ArgumentOutOfRangeException(),
+			};
+		};
 		MasterVolume.ValueChanged += value =>
 		{
 			GameSettings.Instance.MasterVolume = (float)value;
@@ -86,15 +104,12 @@ public partial class Settings : Control
 		};
 		CameraShake.ItemSelected += idx =>
 		{
-			switch (idx)
+			GameSettings.Instance.EnableCameraShake = idx switch
 			{
-				case 0:
-					GameSettings.Instance.EnableCameraShake = false;
-					break;
-				case 1:
-					GameSettings.Instance.EnableCameraShake = true;
-					break;
-			}
+				0 => false,
+				1 => true,
+				_ => GameSettings.Instance.EnableCameraShake,
+			};
 		};
 		CameraShakeScale.ValueChanged += value => GameSettings.Instance.CameraShakeScale = (float)value;
 		CrosshairScale.ValueChanged += value =>

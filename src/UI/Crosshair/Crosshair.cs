@@ -76,24 +76,43 @@ public partial class Crosshair : Node2D
 
 	public override void _Process(double delta)
 	{
+		if (GameSettings.Instance.InputMode == InputMode.Controller)
+		{
+			var velocity = Input.GetVector(
+				InputMapNames.LookLeft,
+				InputMapNames.LookRight,
+				InputMapNames.LookUp,
+				InputMapNames.LookDown
+			);
+			if (velocity.LengthSquared() > 0)
+			{
+				Position += velocity * 4;
+				ClampCrosshairToViewport();
+				EmitSignalOnCrosshairMoved();
+			}
+		}
+
 		PrimaryCrosshairSprite.Frame = 0;
 		SecondaryCrosshairSprite.Frame = 0;
 		Callable.From(() => CrosshairVelocity = Vector2.Zero).CallDeferred();
 	}
 
-	public override void _ExitTree()
+	public override void _UnhandledInput(InputEvent @event)
 	{
-		Input.SetMouseMode(_hiddenMouseMode);
-	}
-
-	public override void _Input(InputEvent @event)
-	{
+		if (GameSettings.Instance.InputMode != InputMode.MouseAndKeyboard)
+			return;
 		if (@event is not InputEventMouseMotion motion)
 			return;
 		Position += motion.Relative;
-		CrosshairVelocity += motion.Relative;
+		CrosshairVelocity = motion.Relative;
+
 		ClampCrosshairToViewport();
 		EmitSignalOnCrosshairMoved();
+	}
+
+	public override void _ExitTree()
+	{
+		Input.SetMouseMode(_hiddenMouseMode);
 	}
 
 	public void ChangePrimaryCrosshairSpread(float spreadRatio)
@@ -206,6 +225,12 @@ public partial class Crosshair : Node2D
 					impulse.X * 0.8f
 				);
 			}
+		}
+
+		public void ResetTweeners()
+		{
+			_impulseTweener?.Kill();
+			_recoilJumpTweener?.Kill();
 		}
 	}
 }

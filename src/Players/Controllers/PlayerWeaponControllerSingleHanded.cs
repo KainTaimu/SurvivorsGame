@@ -57,21 +57,15 @@ public partial class PlayerWeaponControllerSingleHanded : AbstractPlayerWeaponCo
 		EmitSignalOnOffensiveListChanged(offensive);
 	}
 
-	public override void _Input(InputEvent @event)
+	public override void _UnhandledInput(InputEvent @event)
 	{
-		if (@event is not InputEventMouseButton motion)
-			return;
-		if (@event.IsReleased())
-			return;
-
-		switch (motion.ButtonIndex)
+		if (@event.IsActionPressed(InputMapNames.NextAttack))
 		{
-			case MouseButton.WheelUp:
-				NextManualAttack();
-				break;
-			case MouseButton.WheelDown:
-				PreviousManualAttack();
-				break;
+			NextManualAttack();
+		}
+		else if (@event.IsActionPressed(InputMapNames.PreviousAttack))
+		{
+			PreviousManualAttack();
 		}
 	}
 

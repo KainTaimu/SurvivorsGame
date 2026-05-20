@@ -17,14 +17,9 @@ public partial class PauseMenu : CanvasLayer
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event is InputEventKey { Pressed: true } keyEvent)
+		if (@event.IsActionPressed(InputMapNames.PauseMenu))
 		{
-			switch (keyEvent.Keycode)
-			{
-				case Key.Escape:
-					ToggleShow();
-					break;
-			}
+			ToggleShow();
 		}
 	}
 

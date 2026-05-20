@@ -5,6 +5,7 @@ namespace Game.Players.Controllers;
 
 // TODO: How to handle weapons that may need to use both mouse buttons like
 // zooming in with snipers or locking on target with missile?
+[Obsolete("Outdated from PlayerWeaponControllerSingleWield as of 091e058")]
 public partial class PlayerWeaponControllerDoubleWield : AbstractPlayerWeaponController
 {
 	public override void _Ready()
@@ -67,21 +68,15 @@ public partial class PlayerWeaponControllerDoubleWield : AbstractPlayerWeaponCon
 		EmitSignalOnOffensiveListChanged(offensive);
 	}
 
-	public override void _Input(InputEvent @event)
+	public override void _UnhandledInput(InputEvent @event)
 	{
-		if (@event is not InputEventMouseButton motion)
-			return;
-		if (@event.IsReleased())
-			return;
-
-		switch (motion.ButtonIndex)
+		if (@event.IsActionPressed(InputMapNames.NextAttack))
 		{
-			case MouseButton.WheelUp:
-				NextManualAttack();
-				break;
-			case MouseButton.WheelDown:
-				PreviousManualAttack();
-				break;
+			NextManualAttack();
+		}
+		else if (@event.IsActionPressed(InputMapNames.PreviousAttack))
+		{
+			PreviousManualAttack();
 		}
 	}
 

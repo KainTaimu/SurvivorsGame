@@ -2,10 +2,29 @@ using Newtonsoft.Json;
 
 namespace Game.Core.Settings;
 
+public enum InputMode
+{
+	MouseAndKeyboard,
+	Controller,
+}
+
 [GlobalClass]
 [JsonObject(MemberSerialization.OptIn)]
 public partial class GameSettings : Resource
 {
+	[ExportGroup("Controls")]
+	[Export]
+	[JsonProperty]
+	public InputMode InputMode
+	{
+		get;
+		set
+		{
+			field = value;
+			EmitSignalOnInputModeChanged();
+		}
+	} = InputMode.MouseAndKeyboard;
+
 	[ExportGroup("Sound")]
 	[Export]
 	[JsonProperty]
@@ -104,6 +123,9 @@ public partial class GameSettings : Resource
 
 	[Signal]
 	public delegate void OnCrosshairScaleChangedEventHandler();
+
+	[Signal]
+	public delegate void OnInputModeChangedEventHandler();
 
 	public static GameSettings Instance = null!;
 

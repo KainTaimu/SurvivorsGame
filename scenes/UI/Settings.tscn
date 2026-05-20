@@ -3,7 +3,7 @@
 [ext_resource type="LabelSettings" uid="uid://c0lq4rqaj62dx" path="res://scenes/UI/SettingsLabelSettings.tres" id="1_g0tyt"]
 [ext_resource type="Script" uid="uid://hiaypuga6gnf" path="res://src/Core/Settings/Settings.cs" id="1_ydmms"]
 
-[node name="Settings" type="MarginContainer" unique_id=83201529 node_paths=PackedStringArray("MasterVolume", "MasterVolumeSideLabel", "GoreSelection", "CameraShake", "CameraShakeScale", "CrosshairScale", "CrosshairScaleLabel", "DamageIndicators")]
+[node name="Settings" type="MarginContainer" unique_id=83201529 node_paths=PackedStringArray("InputMode", "MasterVolume", "MasterVolumeSideLabel", "GoreSelection", "CameraShake", "CameraShakeScale", "CrosshairScale", "CrosshairScaleLabel", "DamageIndicators")]
 process_mode = 3
 process_priority = -9999
 anchors_preset = 11
@@ -16,6 +16,7 @@ grow_vertical = 2
 theme_override_constants/margin_left = 7
 theme_override_constants/margin_right = 7
 script = ExtResource("1_ydmms")
+InputMode = NodePath("VBoxContainer/InputMode/InputModeOption")
 MasterVolume = NodePath("VBoxContainer/MasterVolume/MasterVolume")
 MasterVolumeSideLabel = NodePath("VBoxContainer/MasterVolume/Label")
 GoreSelection = NodePath("VBoxContainer/Gore/Gore2")
@@ -28,6 +29,33 @@ DamageIndicators = NodePath("VBoxContainer/DamageIndicators/DamageIndicators2")
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1471734743]
 layout_mode = 2
 alignment = 1
+
+[node name="InputMode" type="HSplitContainer" parent="VBoxContainer" unique_id=1264410125]
+layout_mode = 2
+split_offsets = PackedInt32Array(160)
+split_offset = 160
+
+[node name="Vol" type="Label" parent="VBoxContainer/InputMode" unique_id=1861085089]
+custom_minimum_size = Vector2(0, 32)
+custom_maximum_size = Vector2(-1, 32)
+layout_mode = 2
+text = "Input Mode
+"
+label_settings = ExtResource("1_g0tyt")
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+
+[node name="InputModeOption" type="OptionButton" parent="VBoxContainer/InputMode" unique_id=1518211632]
+custom_minimum_size = Vector2(0, 32)
+custom_maximum_size = Vector2(-1, 32)
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "Mouse and Keyboard"
+popup/item_0/id = 0
+popup/item_1/text = "Controller"
+popup/item_1/id = 1
 
 [node name="MasterVolume" type="HSplitContainer" parent="VBoxContainer" unique_id=651266347]
 layout_mode = 2

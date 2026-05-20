@@ -1,3 +1,4 @@
+using Game.Core.Settings;
 using Game.UI;
 
 namespace Game.Players.Controllers;
@@ -24,7 +25,43 @@ public partial class PlayerMovementController : Node
 	public override void _Process(double delta)
 	{
 		Velocity = Vector2.Zero;
-		PlayerMovement(delta);
+
+		switch (GameSettings.Instance.InputMode)
+		{
+			case InputMode.MouseAndKeyboard:
+				PlayerMovement(delta);
+				break;
+			case InputMode.Controller:
+				PlayerMovementJoystick(delta);
+				break;
+			default:
+				throw new ArgumentOutOfRangeException();
+		}
+	}
+
+	private void PlayerMovementJoystick(double delta)
+	{
+		var velocity = Input.GetVector(
+			InputMapNames.MoveLeft,
+			InputMapNames.MoveRight,
+			InputMapNames.MoveUp,
+			InputMapNames.MoveDown
+		);
+
+		if (velocity.LengthSquared() > 0)
+		{
+			_sprite.Animation = "run";
+		}
+		else
+		{
+			_sprite.Animation = "idle";
+			return;
+		}
+
+		var move = velocity * CharacterStats.MoveSpeed;
+		Velocity = move;
+
+		_player.Position += move * (float)delta;
 	}
 
 	private void PlayerMovement(double delta)
@@ -44,20 +81,21 @@ public partial class PlayerMovementController : Node
 
 		if (moveLength > 0)
 		{
-			inputX /= moveLength;
-			inputY /= moveLength;
 			_sprite.Animation = "run";
 		}
 		else
+		{
 			_sprite.Animation = "idle";
+			return;
+		}
+
+		inputX /= moveLength;
+		inputY /= moveLength;
 
 		var move = new Vector2(inputX * (CharacterStats.MoveSpeed), inputY * (CharacterStats.MoveSpeed));
 		Velocity = move;
-		move *= (float)delta;
-		var originalPos = _player.GetPosition();
 
-		var newPos = originalPos + move;
-		_player.SetPosition(newPos);
+		_player.Position += move * (float)delta;
 	}
 
 	private void FlipSprite()
