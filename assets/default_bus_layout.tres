@@ -2,7 +2,7 @@
 
 [sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_h4aup"]
 resource_name = "Distortion"
-pre_gain = 8.05
+pre_gain = 18.49
 post_gain = -6.0
 
 [sub_resource type="AudioEffectEQ" id="AudioEffectEQ_h4aup"]
