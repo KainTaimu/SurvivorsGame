@@ -13,7 +13,7 @@ public partial class EnemySpawner : Node
 		Instance = this;
 	}
 
-	public Entity? SpawnEnemy(EnemyBlueprint bp)
+	public Entity? SpawnEnemy(EnemyBlueprint bp, Vector2? spawnPosition = null)
 	{
 		var ss = ServiceLocator.GetService<SpriteFrameMappingsService>();
 		if (ss is null)
@@ -22,7 +22,7 @@ public partial class EnemySpawner : Node
 			return null;
 		}
 
-		var pos = GetPositionOutsideViewport();
+		var pos = spawnPosition ?? GetPositionOutsideViewport();
 
 		var stats = bp.Stats;
 		var spriteInfo = ss.GetSpriteInfo(bp.SpriteName);

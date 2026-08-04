@@ -85,7 +85,7 @@ animations = [{
 "speed": 7.0
 }]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_23k0g"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_klnc8"]
 size = Vector2(32, 32)
 
 [sub_resource type="Resource" id="Resource_agk5e"]
@@ -104,6 +104,7 @@ animation = &"idle"
 
 [node name="PlayerCameraController" parent="." index="1" unique_id=68646763]
 editor_draw_limits = true
+MinZoom = 0.05
 
 [node name="LookLight" parent="." index="3" unique_id=1398023543]
 shadow_enabled = true

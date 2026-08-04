@@ -33,6 +33,8 @@ public partial class NavMap : NavigationRegion2D
 	public Rect2 GridVisibilityRect => _grid.WorldBounds;
 
 	public static Rid Map { get; private set; }
+	public static Rid AvoidanceMap { get; private set; }
+
 	public static NavMap Instance { get; private set; } = null!;
 
 	private Vector2 _cachedPlayerPosition;
@@ -41,10 +43,27 @@ public partial class NavMap : NavigationRegion2D
 	public override void _Ready()
 	{
 		Map = GetNavigationMap();
+		AvoidanceMap = CreateAvoidanceMap();
 
 		UpdateGrid();
 
 		Instance = this;
+	}
+
+	private Rid CreateAvoidanceMap()
+	{
+		var region = new NavigationRegion2D();
+		var polygon = (NavigationPolygon)NavigationPolygon.DuplicateDeep();
+		polygon.AgentRadius = 1;
+
+		region.NavigationPolygon = polygon;
+		region.NavigationLayers = 2u;
+		region.EnterCost = float.MaxValue;
+		region.TravelCost = float.MaxValue;
+		AddChild(region);
+		region.BakeNavigationPolygon(false);
+
+		return region.GetNavigationMap();
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -97,7 +116,7 @@ public partial class NavMap : NavigationRegion2D
 
 		// if outside navmap
 		const float threshold = 5f;
-		if (position.DistanceSquaredTo(NavigationServer2D.MapGetClosestPoint(Map, position)) > threshold * threshold)
+		if (!_grid.ContainsWorld(position))
 			return _grid.Add(cell.X, cell.Y, [position, playerPos]);
 
 		// if clear path to player

@@ -1,3 +1,4 @@
+using Game.Levels;
 using Game.UI;
 
 namespace Game.Players.Controllers;
@@ -64,7 +65,7 @@ public partial class PlayerMovementController : Node2D
 		var newPos = originalPos + move;
 
 		const float dist = 5;
-		var closest = NavigationServer2D.MapGetClosestPoint(GetWorld2D().NavigationMap, newPos);
+		var closest = NavigationServer2D.MapGetClosestPoint(NavMap.AvoidanceMap, newPos);
 		if (Position.DistanceSquaredTo(closest) > dist * dist && !NoClip)
 			_player.GlobalPosition = closest;
 		else
